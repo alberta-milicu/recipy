@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+
+header {
+  padding: 5px;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+h1 {
+  padding: 0px;
+  padding-left: 50px;
+  color: #cb2d15;  
+  text-align: left;
+  font-family: "Delicious Handrawn", cursive;
+  font-size: 80px;
+  border-radius: 100px;
+}
+
+v-app-bar {
+  height: 100px;
+}
+
+.signup-btn {
+  width: 100px;
+  height: 100px; 
+  margin-top: 70px;
+  margin-left: 20px;
+  font-family: "Delicious Handrawn", cursive;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.login-btn {
+  width: 100px;
+  height: 100px;
+  margin-top: 70px;
+  font-family: "Delicious Handrawn", cursive;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.hello-text {
+  font-size: 25px;
+  margin-left: 10px;
+  font-family: "Delicious Handrawn", cursive;
+  margin-right: -95px;
+}
+
+
+
