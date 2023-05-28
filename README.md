@@ -1,2 +1,2 @@
-# user-stories
-A site where users share short stories about themselves.
+# recipy
+A site where users share and like some recipes.
