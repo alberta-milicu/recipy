@@ -1,8 +1,10 @@
 import mongoose, { Document } from 'mongoose';
 
 export interface IRecipe extends Document {
+  likesCount: number;
   name: string;
   ingredients: string;
+  likedUsers: string[];
 }
 
 const recipeSchema = new mongoose.Schema(
@@ -14,6 +16,10 @@ const recipeSchema = new mongoose.Schema(
     ingredients: {
       type: String,
       required: true,
+    },
+    likedUsers: {
+      type: [String],
+      default: [],
     },
   },
   { timestamps: true },

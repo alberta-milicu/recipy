@@ -112,6 +112,60 @@ server.delete('/recipes', (req: Request, res: Response) => {
     });
 });
 
+server.post('/recipes/:id/like', async (req: Request, res: Response) => {
+  const recipeId: string = req.params.id;
+  const { userEmail } = req.body;
+
+  try {
+    const recipe: IRecipe | null = await Recipe.findById(recipeId);
+
+    if (!recipe) {
+      throw new Error('Recipe not found');
+    }
+
+    if (recipe.likedUsers.includes(userEmail)) {
+      return res.status(400).json({ error: 'User already liked the recipe' });
+    }
+
+    recipe.likedUsers.push(userEmail);
+    recipe.likesCount += 1;
+    await recipe.save();
+
+    res.status(200).json({ message: 'Recipe liked successfully' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+server.post('/recipes/:id/unlike', async (req: Request, res: Response) => {
+  const recipeId: string = req.params.id;
+  const { userEmail } = req.body;
+
+  try {
+    const recipe: IRecipe | null = await Recipe.findById(recipeId);
+
+    if (!recipe) {
+      throw new Error('Recipe not found');
+    }
+
+    const userIndex: number = recipe.likedUsers.findIndex((email: string) => email === userEmail);
+
+    if (userIndex === -1) {
+      return res.status(400).json({ error: 'User has not liked the recipe' });
+    }
+
+    recipe.likedUsers.splice(userIndex, 1);
+    recipe.likesCount -= 1;
+    await recipe.save();
+
+    res.status(200).json({ message: 'Recipe unliked successfully' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // AUTHENTICATION ROUTES
 
 server.get('/login', (req: Request, res: Response) => {
